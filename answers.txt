@@ -1,0 +1,16 @@
+Mod 2 Learning rate decrease answer:
+*The change of reducing learning rate was successful. With 1e-3, the steps were probably too big. The model kept jumping around and couldn’t settle into a good solution. With 1e-4, the steps were smaller. The model adjusted weights more carefully and seemed to move toward a better minimum.*
+
+Mod 1 different transform for training answer:
+No good unfortunately. Changing the train transform likely made the data harder for the model without improving generalization. The model probably got noisier inputs and struggled to learn stable features.
+
+
+Overall summary:
+
+The ResNet18 pretrained (transfer learning) model had the best performance by far (≈92.7% accuracy, ≈0.097 loss).It jumped to high accuracy and very low loss. Pretraining gives strong image features (edges/textures/shapes). Fine-tuning needs less data than learning from scratch, so it generalizes much better.
+The adjusted Learning Rate (1e-3 → 1e-4) model resulted in clear improvement too (~75% accuracy, ~0.47 loss). The original learning rate was too large, causing unstable updates. Reducing it led to smoother convergence and significantly better generalization. I learned performance gains can come purely from better hyperparametes not architecture changes.
+The modified training transform resulted in worst performance (~53% accuracy, ~0.92 loss).
+Data augmentation has to preserve the meaningful signal. Strong or poorly chosen transforms can distort important visual features and harm learning instead of improving robustness. More augmentation is not automatically better.
+Overall Insight:
+Model performance depends on three interacting components — architecture, optimization, and data preprocessing. In this case, optimization (learning rate tuning) and architecture had the strongest positive impact among the CNN experiments, while poorly tuned augmentation reduced performance.
+
